@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+<center><div class="contenedor">
+    <h1>MATRIS TRIANGULAR</h1>
+    <p>"La matris sera cuadrada N x N"</p>
+<p>"Ingresa el numero de la matris triangular y luego preciona ENVIAR"</p>
+<p>NOTA: SOLO FUNCIONA CON UNA TABLA A LA VEZ</p>
+<input type="number" id="numero" min="2" value="2">
+<button type="button" onclick="crearmatrizIdentidad()"> ENVIAR</button>
+
+<script>
+  function crearmatrizIdentidad(){
+        let body =document.getElementsByTagName("body")[0];
+        let tamMatriz = document.getElementById("numero").value;
+        let div = document.createElement("div");
+        let table = document.createElement("table");
+        let tr,td,texto;
+        let input;
+        let boton = document.createElement("button");
+        boton.setAttribute("onclick", "obtenervalores("+tamMatriz+")");
+        texto = document.createTextNode("Verificar");
+        boton.appendChild(texto);
+
+        let arregloMatriz = new Array(tamMatriz);
+        for(let n=0;n<tamMatriz;n++){
+            arregloMatriz[n]= new Array(tamMatriz);
+            for(let m=0;m<tamMatriz;m++){
+                if(n==m){
+                    arregloMatriz[n][m]=1;
+                }else{
+                    arregloMatriz[n][m]=0;
+                }
+            }
+        }
+
+    /*
+        tr=document.createElement("tr");
+        td=document.createElement("td");
+        texto=document.createTextNode("registro");
+        td.appendChild(texto);
+        tr.appendChild(td);
+        table.appendChild(tr);
+        body.appendChild(table);
+    */
+        for(let i=0;i<tamMatriz;i++){
+            tr=document.createElement("tr");
+            for (let j = 0; j < tamMatriz; j++) {
+                td=document.createElement("td");
+                input=document.createElement("input");
+                input.setAttribute("id",i+""+j);
+                input.setAttribute("value", "0");
+                input.setAttribute("type", "number");
+                //texto=document.createTextNode(arregloMatriz[i][j]);
+                td.appendChild(input);
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        div.appendChild(table)
+        div.setAttribute("align","center");
+        table.appendChild(boton);
+        table.setAttribute("border","2");
+        body.appendChild(div);
+
+  }
+  function obtenervalores(tamMatriz){
+    let arregloMatriz = new Array(tamMatriz);
+        for(let n=0;n<tamMatriz;n++){
+            arregloMatriz[n]= new Array(tamMatriz);
+            for(let m=0;m<tamMatriz;m++){
+                arregloMatriz[n][m]=document.getElementById(n+""+m).value;
+            }
+        }
+        //Recorrer matriz solita
+        let contador = 0;
+        for(let i=0;i<tamMatriz; i++){
+            for(let j=0; j<tamMatriz; j++){
+                if(j>i){
+                    /*if(arregloMatriz[i][j] == 0){
+                        
+                    }*/
+                    if(arregloMatriz[i][j] != 0){
+                        contador = + 1;
+                    }
+                }
+            }
+        }
+        
+
+        if(contador != 0){
+            alert("No es una matris triangular");
+        }else{
+            alert("Es una matris triangular");
+        }
+                                
+
+  }
+</script>
+</div></center>
+</body>
+</html>

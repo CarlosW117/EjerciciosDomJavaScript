@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .contenedor{
+            margin: auto;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <title>Ejercicio 1</title>
+</head>
+<body>
+<div class="contenedor">
+    <h1>MATRIZ IDENTIDAD</h1>
+<p>"La matris sera cuadrada N x N"</p>
+<p>"Ingresa el valor de "N" y luego preciona ENVIAR"</p>
+<input type="number" id="numero" min="2" value="2">
+<button type="button" onclick="crearmatrizIdentidad()"> ENVIAR</button>
+<!--<table> //Esto es para guiarme al hacer la tabla
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+    </tr>
+</table> --> 
+
+<script>
+  function crearmatrizIdentidad(){
+        let body = document.getElementsByTagName("body")[0];
+        let div = document.createElement("div");
+        let tamMatriz = document.getElementById("numero").value;
+        let table = document.createElement("table");
+        let tr,td,texto;
+
+        let arregloMatriz = new Array(tamMatriz);
+        for(let n=0;n<tamMatriz;n++){
+            arregloMatriz[n]= new Array(tamMatriz);
+            for(let m=0;m<tamMatriz;m++){
+                if(n==m){
+                    arregloMatriz[n][m]=1;
+                }else{
+                    arregloMatriz[n][m]=0;
+                }
+            }
+        }
+
+    /*
+        tr=document.createElement("tr");
+        td=document.createElement("td");
+        texto=document.createTextNode("registro");
+        td.appendChild(texto);
+        tr.appendChild(td);
+        table.appendChild(tr);
+        body.appendChild(table);
+    */
+        for(let i=0;i<tamMatriz;i++){
+            tr=document.createElement("tr");
+            for (let j = 0; j < tamMatriz; j++) {
+                td=document.createElement("td");
+                texto=document.createTextNode(arregloMatriz[i][j]);
+                td.appendChild(texto);
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        //table.setAttribute("border","2");
+        //body.appendChild(table);
+        div.appendChild(table);
+        div.setAttribute("align","center");
+        body.appendChild(div);
+  }
+</script>
+<!-- <script src="./m_identidad.js"></script> -->
+</div>
+</body>
+</html>
